@@ -16,19 +16,19 @@ we can [begin selling a new category of items](Inn#beginToSell). First an introd
 Pretty simple, right? Well this is where it gets interesting:
 
 - Inventory#updateQualities
-    - Once the sell by date has passed, Quality degrades twice as fast
-    - The Quality of an item is never negative
-    - "Aged Brie" actually increases in Quality the older it gets
-    - The Quality of an item is never more than 50
-    - "Sulfuras", being a legendary item, never has to be sold or decreases in Quality
-    - "Backstage passes", like aged brie, increases in Quality as its SellIn value approaches;
+    - [Once the sell by date has passed](Item.expirationState), Quality degrades twice as fast [](Domain Logic)
+    - The Quality of an item is never negative [](validation)
+    - ["Aged Brie"] actually increases in Quality [the older it gets](Domain Logic)
+    - The Quality of an item is never more than 50 [](Domain Logic)
+    - ["Sulfuras"], being a legendary item, [never has to be sold](Item.sellIn=-1 or 0) or [decreases in Quality](Domain Logic)
+    - ["Backstage passes"], like aged brie, [increases in Quality as its SellIn value approaches;](Domain Logic)
     Quality increases by 2 when there are 10 days or less and by 3 when there are 5 days or less but
-    Quality drops to 0 after the concert
+    Quality drops to 0 [after the concert](Item.expirationState)
 
 We have recently signed a supplier of conjured items. This requires an update to our system:
 
 - Inventory#updateQualities
-    - ["Conjured"](Item.state) items degrade in Quality twice as fast as normal items
+    - ["Conjured"](Item.isConjured) items degrade in Quality twice as fast as normal items
 
     - Just for clarification, an item can never have its Quality increase above 50, however "Sulfuras" is a
      legendary item and as such its Quality is 80 and it never alters.
@@ -39,14 +39,29 @@ goblin in the corner who will insta-rage and one-shot you as he doesn't believe 
 ownership (you can make the UpdateQuality method and Items property static if you like, we'll cover
 for you).
 
-
 # Solution
 I will solve in following procedure
-1. **Clarify requirement** and **model domain**
-2. **Make test** cases with **big example**
-3. **Design Algorithm**
-4. Write Code
-5. **Do test**
+1. **Clarify requirement**
+    1. Who is going to use ? -> Inn
+    1. How they are going to use ? -> Once per day, to update qualities of all the stock
+1. **model domain**
+    1. Component
+        - -Inn-, -Owner-, Item, -Inventory-GiledRose, -Trigger-TestCode
+    1. Relationship ()
+        - GiledRose(1).Item(M), Unidirection
+        - Item-sellIn, Item-quality
+        - Item.State
+    1. Functionality
+        - Domain Logic VS Application Logic
+        - GiledRose#updateQualities calls updateQuality on each item
+        - GiledRose#beginToSell
+1. **Make test** cases with **big example**
+1. **Design Algorithm**
+    1. Component
+    1. Relationship
+    1. Functionality
+1. Write Code
+1. **Do test**
 
 ##  Clarify requirement and model domain
 Domain Modeling : CRF
