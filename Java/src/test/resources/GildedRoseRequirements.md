@@ -28,7 +28,7 @@ Pretty simple, right? Well this is where it gets interesting:
 We have recently signed a supplier of conjured items. This requires an update to our system:
 
 - Inventory#updateQualities
-    - ["Conjured"](Item.isConjured) items degrade in Quality twice as fast as normal items
+    - ["Conjured"](Item.confuredQualityFactor) items degrade in Quality twice as fast as normal items
 
     - Just for clarification, an item can never have its Quality increase above 50, however "Sulfuras" is a
      legendary item and as such its Quality is 80 and it never alters.
@@ -74,6 +74,7 @@ OO Modeling : CRM
 1. Class
 2. Relationship
 3. Method
+end to end
 
 Refactoring :
 Make code paragraph with comments
