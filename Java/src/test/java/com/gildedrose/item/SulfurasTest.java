@@ -3,14 +3,9 @@ package com.gildedrose.item;
 import com.gildedrose.GildedRose;
 import org.junit.Test;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 public class SulfurasTest {
-
-    @Test
-    public void legendaryItemNeverBeSold() {
-        // should I add sellable flag on item ?
-    }
 
     @Test
     public void legendaryItemNeverChangesQuality() {
