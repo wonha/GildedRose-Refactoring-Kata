@@ -18,23 +18,29 @@ public abstract class Item {
     }
 
     public static Item of(String name, int sellIn, int quality) {
+
+        Item item;
+        if (name.startsWith("Aged Brie")) {
+            itemValidation(quality);
+            item = new AgedBrie(name, sellIn, quality);
+        } else if (name.startsWith("Sulfuras")) {
+            item = new Sulfuras(name, sellIn, quality);
+        } else if (name.startsWith("Backstage passes")) {
+            itemValidation(quality);
+            item = new BackstagePasses(name, sellIn, quality);
+        } else {
+            itemValidation(quality);
+            item = new NormalItem(name, sellIn, quality);
+        }
+        return item;
+    }
+
+    private static void itemValidation(int quality) {
         if (quality < 0) {
             throw new IllegalArgumentException("Quality can not be less then 0");
         } else if (quality > 50) {
             throw new IllegalArgumentException("Quality can not be more than 50");
         }
-
-        Item item;
-        if (name.startsWith("Aged Brie")) {
-            item = new AgedBrie(name, sellIn, quality);
-        } else if (name.startsWith("Sulfuras")) {
-            item = new Sulfuras(name, sellIn, quality);
-        } else if (name.startsWith("Backstage passes")) {
-            item = new BackstagePasses(name, sellIn, quality);
-        } else {
-            item = new NormalItem(name, sellIn, quality);
-        }
-        return item;
     }
 
     @Override
@@ -50,9 +56,9 @@ public abstract class Item {
         forceQualityBoundary();
     }
 
-    private void forceQualityBoundary() {
+    protected void forceQualityBoundary() {
         if (quality > 50) {
-           quality = 50;
+            quality = 50;
         } else if (quality <= 0) {
             quality = 0;
         }

@@ -13,7 +13,7 @@ public class SulfurasTest {
     }
 
     @Test
-    public void legendaryItemNeverDecreaseQuality() {
+    public void legendaryItemNeverChangesQuality() {
         Item[] items = new Item[] {
                 Item.of("Sulfuras", 5, 30),
         };
@@ -21,9 +21,18 @@ public class SulfurasTest {
 
         inventory.updateQuality2();
 
-        assertEquals(30, items[0].quality);
-
+        assertEquals(80, items[0].quality);
     }
 
+    @Test
+    public void legendaryItemAlwaysInitQualityTo80() {
+        Item[] items = new Item[] {
+                Item.of("Sulfuras", 5, 90),
+        };
+        GildedRose inventory = new GildedRose(items);
 
+        inventory.updateQuality2();
+
+        assertEquals(80, items[0].quality);
+    }
 }
