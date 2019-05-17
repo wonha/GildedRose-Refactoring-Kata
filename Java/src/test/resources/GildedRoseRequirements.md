@@ -82,3 +82,7 @@ Mark assignments which changes the state of program
 
 ## Write Code
 ## Do test
+
+
+# Retrospective
+Maybe we could you factory pattern instead of static factory method on Item class, with Dependency Inversion Pattern, concealing concrete Item classes
