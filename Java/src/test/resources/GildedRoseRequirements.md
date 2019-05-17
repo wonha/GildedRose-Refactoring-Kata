@@ -82,7 +82,22 @@ Mark assignments which changes the state of program
 
 ## Write Code
 ## Do test
+Common (Item class)
+    scnario 1
+    scnario 2
+    ... (Prioritized)
+NormalItem
+    scnario 1
+    scnario 2
+    ... (Prioritized)
+AgedBrie
+    scnario 1
+    scnario 2
+    ... (Prioritized)
+...
+
 
 
 # Retrospective
-Maybe we could you factory pattern instead of static factory method on Item class, with Dependency Inversion Pattern, concealing concrete Item classes
+1. Maybe we could you factory pattern instead of static factory method on Item class, with Dependency Inversion Pattern, concealing concrete Item classes
+2. Or, if we can't touch the Item class at all, then we can make some ItemManager class compositing the Item class, and let ItemManager class contain all other attributes to handle the specific item
